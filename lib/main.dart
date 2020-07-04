@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:Visualizers/LinearSearch/LinearVisuals.dart';
 
 void main() {
   runApp(MyApp());
@@ -79,21 +80,22 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           Expanded(
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Expanded(
                   flex: 7,
                   child: Container(
                     decoration: ShapeDecoration(
-                      shape: Border.all(color: Colors.grey[700], width: 2.0),
+                      shape: Border(right: BorderSide(color: Colors.grey[700])),
                     ),
-                    child: Text('Algorithm Title'),
+                    child: LinearSearchVisual(),
                   ),
                 ),
                 Expanded(
                   flex: 3,
                   child: Container(
                     decoration: ShapeDecoration(
-                      shape: Border.all(color: Colors.grey[700], width: 2.0),
+                      shape: Border(left: BorderSide(color: Colors.grey[700])),
                     ),
                     child: Text('Controls'),
                   ),
@@ -106,19 +108,25 @@ class _MyHomePageState extends State<MyHomePage> {
             width: double.infinity,
             decoration: BoxDecoration(color: Colors.black),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Icon(Icons.computer),
-                Text('Output'),
-                SizedBox(
-                  width: 20.0,
+                Row(
+                  children: [
+                    Icon(Icons.computer),
+                    Text('Output'),
+                    SizedBox(
+                      width: 20.0,
+                    ),
+                    Icon(Icons.chrome_reader_mode),
+                    Text('Algorithm'),
+                    SizedBox(
+                      width: 20.0,
+                    ),
+                    Icon(Icons.code),
+                    Text('Code')
+                  ],
                 ),
-                Icon(Icons.chrome_reader_mode),
-                Text('Algorithm'),
-                SizedBox(
-                  width: 20.0,
-                ),
-                Icon(Icons.code),
-                Text('Code')
+                Text('by Gowshik Prabhu')
               ],
             ),
           ),
