@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:Visualizers/LinearSearch/LinearVisuals.dart';
+import 'package:Visualizers/LinearSearch/LinearControls.dart';
 
 void main() {
   runApp(MyApp());
@@ -86,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   flex: 7,
                   child: Container(
                     decoration: ShapeDecoration(
-                      shape: Border(right: BorderSide(color: Colors.grey[700])),
+                      shape: Border(right: BorderSide(color: Colors.grey[900])),
                     ),
                     child: LinearSearchVisual(),
                   ),
@@ -95,9 +96,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   flex: 3,
                   child: Container(
                     decoration: ShapeDecoration(
-                      shape: Border(left: BorderSide(color: Colors.grey[700])),
+                      shape: Border(left: BorderSide(color: Colors.grey[900])),
                     ),
-                    child: Text('Controls'),
+                    child: LinearControls(),
                   ),
                 ),
               ],
