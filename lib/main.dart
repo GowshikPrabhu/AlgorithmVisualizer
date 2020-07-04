@@ -17,6 +17,25 @@ class MyApp extends StatelessWidget {
   }
 }
 
+class Item {
+  Item({
+    this.expandedValue,
+    this.headerValue,
+    this.isExpanded = false,
+  });
+
+  List<String> expandedValue;
+  String headerValue;
+  bool isExpanded;
+}
+
+List<Item> _algorithms = [
+  Item(
+    headerValue: 'Searching',
+    expandedValue: ['Linear Search'],
+  ),
+];
+
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
@@ -27,13 +46,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+  List<Item> _data = _algorithms;
 
   @override
   Widget build(BuildContext context) {
@@ -51,25 +64,79 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {})
         ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+      drawer: Drawer(
+        child: ListView.builder(
+          itemCount: _data.length,
+          itemBuilder: (BuildContext context, int index) {
+            return ExpansionTile(
+              title: Text(_data[index].headerValue),
+              children: _buildList(_data[index].expandedValue),
+            );
+          },
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+      body: Column(
+        children: [
+          Expanded(
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 7,
+                  child: Container(
+                    decoration: ShapeDecoration(
+                      shape: Border.all(color: Colors.grey[700], width: 2.0),
+                    ),
+                    child: Text('Algorithm Title'),
+                  ),
+                ),
+                Expanded(
+                  flex: 3,
+                  child: Container(
+                    decoration: ShapeDecoration(
+                      shape: Border.all(color: Colors.grey[700], width: 2.0),
+                    ),
+                    child: Text('Controls'),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.all(8.0),
+            width: double.infinity,
+            decoration: BoxDecoration(color: Colors.black),
+            child: Row(
+              children: [
+                Icon(Icons.computer),
+                Text('Output'),
+                SizedBox(
+                  width: 20.0,
+                ),
+                Icon(Icons.chrome_reader_mode),
+                Text('Algorithm'),
+                SizedBox(
+                  width: 20.0,
+                ),
+                Icon(Icons.code),
+                Text('Code')
+              ],
+            ),
+          ),
+        ],
       ),
     );
+  }
+
+  _buildList(List<String> names) {
+    List<Widget> list = [];
+
+    for (String name in names) {
+      list.add(new ListTile(
+        title: Text(name),
+        onTap: () {},
+      ));
+    }
+
+    return list;
   }
 }
