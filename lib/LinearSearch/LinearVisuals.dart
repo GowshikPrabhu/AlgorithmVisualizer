@@ -11,11 +11,11 @@ class _LinearSearchVisualState extends State<LinearSearchVisual> {
     return Column(
       children: <Widget>[
         Container(
-          padding: const EdgeInsets.all(8.0),
+          padding: EdgeInsets.only(left: 8.0),
           decoration: ShapeDecoration(
             shape: Border(
               bottom: BorderSide(
-                color: Colors.grey[600],
+                color: Colors.grey[900],
               ),
             ),
           ),
@@ -29,10 +29,12 @@ class _LinearSearchVisualState extends State<LinearSearchVisual> {
                   fontSize: 20,
                 ),
               ),
-              Icon(
-                Icons.linear_scale,
-                semanticLabel: 'Linear Array',
-              )
+              IconButton(
+                padding: EdgeInsets.all(0.0),
+                icon: Icon(Icons.more_horiz),
+                onPressed: () {},
+                tooltip: 'Linear Box',
+              ),
             ],
           ),
         ),
